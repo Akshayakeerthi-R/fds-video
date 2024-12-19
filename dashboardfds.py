@@ -11,7 +11,7 @@ import plotly.graph_objects as go
 # Load your datasets or any data needed
 raw_data_path = "https://raw.githubusercontent.com/Akshayakeerthi-R/fds-video/refs/heads/main/diabetes_prediction_dataset.csv"
 # Assume that preprocessed data is available and accessible
-preprocessed_data_path = "https://raw.githubusercontent.com/Iamvideo123/fds/refs/heads/main/diabetes_prediction_dataset_preprocessed.csv"
+preprocessed_data_path = "https://raw.githubusercontent.com/Akshayakeerthi-R/fds-video/refs/heads/main/preprocessed_dataset.csv"
 
 # Load the data
 try:
