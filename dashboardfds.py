@@ -6,6 +6,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.metrics import confusion_matrix, roc_curve
 import plotly.graph_objects as go
+import numpy as np  # Importing NumPy to use np.number
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler
 
 # Title and Sidebar
 st.title("Model Comparison: Minimal vs Good Preprocessing")
@@ -18,7 +21,7 @@ df_raw = pd.read_csv(raw_data_path)
 # Minimal Preprocessing: Handling missing values and scaling
 def minimal_preprocessing(df):
     # Handle missing values for numeric features with SimpleImputer (using median strategy)
-    numeric_features = df.select_dtypes(include=[np.number]).columns
+    numeric_features = df.select_dtypes(include=[np.number]).columns  # Now np is imported
     numeric_imputer = SimpleImputer(strategy='median')
     df[numeric_features] = numeric_imputer.fit_transform(df[numeric_features])
     
@@ -120,20 +123,4 @@ st.pyplot(fig)
 st.header("4. Model Comparison")
 
 comparison_data = {
-    "Model": ["Minimal Preprocessing", "Good Preprocessing"],
-    "Accuracy": [minimal_accuracy, good_accuracy],
-}
-
-df_comparison = pd.DataFrame(comparison_data)
-
-# Visualization of model comparison
-fig = px.bar(df_comparison, x="Model", y="Accuracy", color="Model", title="Accuracy Comparison Between Preprocessing Methods")
-st.plotly_chart(fig, use_container_width=True)
-
-# Section 5: Insights
-st.header("5. Insights")
-st.markdown("""
-- **Minimal Preprocessing**: Achieved an accuracy of 46.58%, which indicates that preprocessing steps significantly improve model performance.
-- **Good Preprocessing**: Achieved an accuracy of 53.25%. The confusion matrix suggests that while the model is decent, it still struggles with some classifications.
-- **Takeaway**: Proper preprocessing can enhance the model's ability to generalize, reducing misclassifications.
-""")
+    "Model": ["Minimal Preprocessing", "Good Preproc
