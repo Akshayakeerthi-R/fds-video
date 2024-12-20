@@ -31,13 +31,27 @@ good_cm = [[46, 142], [45, 167]]
 minimal_accuracy = 0.46578947368421053
 minimal_cm = [[71, 115], [88, 106]]
 
-# Load true labels and predicted probabilities
-# Replace with actual data sources
-y_true_minimal = pd.read_csv("y_true_minimal.csv").values.ravel()
-y_score_minimal = pd.read_csv("y_score_minimal.csv").values.ravel()
+# File upload for minimal preprocessing
+st.sidebar.header("Upload Files for Minimal Preprocessing")
+y_true_minimal_file = st.sidebar.file_uploader("Upload y_true_minimal.csv", type="csv")
+y_score_minimal_file = st.sidebar.file_uploader("Upload y_score_minimal.csv", type="csv")
 
-y_true_good = pd.read_csv("y_true_good.csv").values.ravel()
-y_score_good = pd.read_csv("y_score_good.csv").values.ravel()
+if y_true_minimal_file and y_score_minimal_file:
+    y_true_minimal = pd.read_csv(y_true_minimal_file).values.ravel()
+    y_score_minimal = pd.read_csv(y_score_minimal_file).values.ravel()
+else:
+    st.error("Please upload both y_true_minimal.csv and y_score_minimal.csv files.")
+
+# File upload for good preprocessing
+st.sidebar.header("Upload Files for Good Preprocessing")
+y_true_good_file = st.sidebar.file_uploader("Upload y_true_good.csv", type="csv")
+y_score_good_file = st.sidebar.file_uploader("Upload y_score_good.csv", type="csv")
+
+if y_true_good_file and y_score_good_file:
+    y_true_good = pd.read_csv(y_true_good_file).values.ravel()
+    y_score_good = pd.read_csv(y_score_good_file).values.ravel()
+else:
+    st.error("Please upload both y_true_good.csv and y_score_good.csv files.")
 
 # Section 1: Data Overview
 st.header("1. Data Overview")
